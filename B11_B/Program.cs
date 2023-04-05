@@ -129,7 +129,7 @@ namespace DaftarBimbel
         public void insert(string id_pen, string id_sis, string id_kel, string tgl, SqlConnection con)
         {
             string str = "";
-            str = "insert into pendaftaran (id_pen, id_sis, id_kel, tgl)" + " values(@idpen, @idsis, @idkel, @tanggal)";
+            str = "insert into pendaftaran (id_pendaftaran, id_siswa, id_kelas, tanggal_pendaftaran)" + " values(@idpen, @idsis, @idkel, @tanggal)";
             SqlCommand cmd = new SqlCommand(str, con);
             cmd.CommandType = CommandType.Text;
             cmd.Parameters.Add(new SqlParameter("idpen", id_pen));
