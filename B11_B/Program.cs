@@ -57,13 +57,13 @@ namespace DaftarBimbel
                                                 {
                                                     Console.Clear();
                                                     Console.WriteLine("INPUT DATA MAHASISWA\n");
-                                                    Console.WriteLine("Masukkan ID Pendaftaran: ");
+                                                    Console.WriteLine("Masukkan ID Pendaftaran (example : P001): ");
                                                     string id_pen = Console.ReadLine();
-                                                    Console.WriteLine("Masukkan ID Siswa: ");
+                                                    Console.WriteLine("Masukkan ID Siswa (example : S001): ");
                                                     string id_sis = Console.ReadLine();
-                                                    Console.WriteLine("Masukkan ID Kelas: ");
+                                                    Console.WriteLine("Masukkan ID Kelas (example : K001): ");
                                                     string id_kel = Console.ReadLine();
-                                                    Console.WriteLine("Masukkan Tanggal Pendaftaran: ");
+                                                    Console.WriteLine("Masukkan Tanggal Pendaftaran (example : 2023-04-05): ");
                                                     string tgl = Console.ReadLine();
                                                     try
                                                     {
@@ -78,6 +78,9 @@ namespace DaftarBimbel
                                                 }
                                                 break;
                                             case '3':
+
+                                                break;
+                                            case '4':
                                                 conn.Close();
                                                 return;
                                             default:
