@@ -57,19 +57,17 @@ namespace DaftarBimbel
                                                 {
                                                     Console.Clear();
                                                     Console.WriteLine("INPUT DATA MAHASISWA\n");
-                                                    Console.WriteLine("Masukkan NIM: ");
-                                                    string NIM = Console.ReadLine();
-                                                    Console.WriteLine("Masukkan nama mahasiswa: ");
-                                                    string NmaMhs = Console.ReadLine();
-                                                    Console.WriteLine("Masukkan alamat mahasiswa: ");
-                                                    string Almt = Console.ReadLine();
-                                                    Console.WriteLine("Masukkan jenis kelamin (L/P): ");
-                                                    string jk = Console.ReadLine();
-                                                    Console.WriteLine("Masukkan nomor telepon: ");
-                                                    string notlpn = Console.ReadLine();
+                                                    Console.WriteLine("Masukkan ID Pendaftaran: ");
+                                                    string id_pen = Console.ReadLine();
+                                                    Console.WriteLine("Masukkan ID Siswa: ");
+                                                    string id_sis = Console.ReadLine();
+                                                    Console.WriteLine("Masukkan ID Kelas: ");
+                                                    string id_kel = Console.ReadLine();
+                                                    Console.WriteLine("Masukkan Tanggal Pendaftaran: ");
+                                                    string tgl = Console.ReadLine();
                                                     try
                                                     {
-                                                        pr.insert(NIM, NmaMhs, Almt, jk, notlpn, conn);
+                                                        pr.insert( id_pen, id_sis, id_kel, tgl , conn);
                                                         conn.Close();
                                                     }
                                                     catch
@@ -114,7 +112,7 @@ namespace DaftarBimbel
         }
         public void baca(SqlConnection con)
         {
-            SqlCommand cmd = new SqlCommand("Select * from HRD.Mahasiswa", con);
+            SqlCommand cmd = new SqlCommand("Select * from pendaftaran", con);
             SqlDataReader r = cmd.ExecuteReader();
             while (r.Read())
             {
@@ -125,17 +123,16 @@ namespace DaftarBimbel
                 Console.WriteLine();
             }
         }
-        public void insert(string NIM, string NmaMhs, string Almt, string jk, string notlpn, SqlConnection con)
+        public void insert(string id_pen, string id_sis, string id_kel, string tgl, SqlConnection con)
         {
             string str = "";
-            str = "insert into HRD.MAHASISWA (NIM, NamaMhs, AlamatMhs, Sex, PhoneMhs)" + " values(@nim, @nma, @alamat, @JK, @Phn)";
+            str = "insert into pendaftaran (id_pen, id_sis, id_kel, tgl)" + " values(@idpen, @idsis, @idkel, @tanggal)";
             SqlCommand cmd = new SqlCommand(str, con);
             cmd.CommandType = CommandType.Text;
-            cmd.Parameters.Add(new SqlParameter("nim", NIM));
-            cmd.Parameters.Add(new SqlParameter("nma", NmaMhs));
-            cmd.Parameters.Add(new SqlParameter("alamat", Almt));
-            cmd.Parameters.Add(new SqlParameter("JK", jk));
-            cmd.Parameters.Add(new SqlParameter("Phn", notlpn));
+            cmd.Parameters.Add(new SqlParameter("idpen", id_pen));
+            cmd.Parameters.Add(new SqlParameter("idsis", id_sis));
+            cmd.Parameters.Add(new SqlParameter("idkel", id_kel));
+            cmd.Parameters.Add(new SqlParameter("tanggal", tgl));
             cmd.ExecuteNonQuery();
             Console.WriteLine("Data berhasil ditambahkan");
         }
