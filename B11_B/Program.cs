@@ -56,7 +56,7 @@ namespace DaftarBimbel
                                             case '2':
                                                 {
                                                     Console.Clear();
-                                                    Console.WriteLine("INPUT DATA MAHASISWA\n");
+                                                    Console.WriteLine("INPUT DATA PENDAFTARAN\n");
                                                     Console.WriteLine("Masukkan ID Pendaftaran (example : P001): ");
                                                     string id_pen = Console.ReadLine();
                                                     Console.WriteLine("Masukkan ID Siswa (example : S001): ");
@@ -78,7 +78,20 @@ namespace DaftarBimbel
                                                 }
                                                 break;
                                             case '3':
-
+                                                Console.Clear();
+                                                Console.WriteLine("INPUT DATA YANG INGIN DIHAPUS\n");
+                                                Console.WriteLine("Masukkan ID Pendaftaran (example : P001): ");
+                                                string id_pens = Console.ReadLine();
+                                                try
+                                                {
+                                                    pr.delete(id_pens, conn);
+                                                    conn.Close();
+                                                }
+                                                catch
+                                                {
+                                                    Console.WriteLine("\nAlamat tidak memiliki " +
+                                                        "akses untuk menambah data");
+                                                }
                                                 break;
                                             case '4':
                                                 conn.Close();
@@ -136,6 +149,16 @@ namespace DaftarBimbel
             cmd.Parameters.Add(new SqlParameter("idsis", id_sis));
             cmd.Parameters.Add(new SqlParameter("idkel", id_kel));
             cmd.Parameters.Add(new SqlParameter("tanggal", tgl));
+            cmd.ExecuteNonQuery();
+            Console.WriteLine("Data berhasil ditambahkan");
+        }
+        public void delete(string id_pens, SqlConnection con)
+        {
+            string str = "";
+            str = "delete from pendaftaran @idpen";
+            SqlCommand cmd = new SqlCommand(str, con);
+            cmd.CommandType = CommandType.Text;
+            cmd.Parameters.Add(new SqlParameter("idpen", id_pens));
             cmd.ExecuteNonQuery();
             Console.WriteLine("Data berhasil ditambahkan");
         }
